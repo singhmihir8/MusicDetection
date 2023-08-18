@@ -17,21 +17,26 @@ from torch.utils.data import DataLoader
 import time
 import glob
 
+
 class AI_Detection_Model(nn.Module):
     def __init__(self, num_classes, num_layers, pretrained=True):
         super(AI_Detection_Model, self).__init__()
         if num_layers == 18:
-            self.resnet = models.resnet18(weights='ResNet18_Weights.IMAGENET1K_V1')
+            self.resnet = models.resnet18(
+                weights='ResNet18_Weights.IMAGENET1K_V1')
         elif num_layers == 34:
-            self.resnet = models.resnet34(weights='ResNet34_Weights.IMAGENET1K_V1')
+            self.resnet = models.resnet34(
+                weights='ResNet34_Weights.IMAGENET1K_V1')
         elif num_layers == 50:
-            self.resnet = models.resnet50(weights='ResNet50_Weights.IMAGENET1K_V1')
-            
+            self.resnet = models.resnet50(
+                weights='ResNet50_Weights.IMAGENET1K_V1')
+
         self.resnet.fc = nn.Linear(self.resnet.fc.in_features, num_classes)
 
     def forward(self, x):
         x = self.resnet(x)
         return x
+
 
 def crop_image(file):
     # Opens a image in RGB mode
@@ -55,9 +60,12 @@ def crop_image(file):
     im1 = im1.save(file)
 
 # Function to convert audio file to spectrogram image and save as JPEG
+
+
 def audio_to_spectrogram(audio_file, output_file):
     # Load the audio file
-    audio, sr = librosa.load(audio_file, duration=30.0)  # Specify duration of 30 seconds
+    # Specify duration of 30 seconds
+    audio, sr = librosa.load(audio_file, duration=30.0)
 
     # Create a spectrogram image
     D = librosa.amplitude_to_db(np.abs(librosa.stft(audio)), ref=np.max)
@@ -70,11 +78,11 @@ def audio_to_spectrogram(audio_file, output_file):
 
     # Close the plot
     plt.close()
-    
+
     crop_image(output_file)
 
 
-def vid_to_mp3(link, destination) :
+def vid_to_mp3(link, destination):
     # url input from user
     yt = YouTube(link)
 
@@ -95,6 +103,8 @@ def vid_to_mp3(link, destination) :
     return new_file, name
 
 # Define the function for testing a single image
+
+
 def test_single_image(image_path, transform):
     # Load and preprocess the image
     image = Image.open(image_path)
@@ -102,7 +112,8 @@ def test_single_image(image_path, transform):
     input_image = transform(image)
 
     # Prepare the input tensor
-    input_tensor = input_image.unsqueeze(0)  # Add an extra dimension to represent the batch (batch_size=1)
+    # Add an extra dimension to represent the batch (batch_size=1)
+    input_tensor = input_image.unsqueeze(0)
 
     # Move the image to the device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -121,13 +132,14 @@ def test_single_image(image_path, transform):
 
     return "AI Music" if predicted_class.item() == 0 else 'Real Music'
 
+
 # Define transformations for the input images
 transform = transforms.Compose([
-#     transforms.Resize((1000, 400)),
-#     transforms.ToTensor()
+    #     transforms.Resize((1000, 400)),
+    #     transforms.ToTensor()
     transforms.Resize((560, 224)),
     transforms.ToTensor(),
-#     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    #     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
 app = Flask(__name__)
@@ -152,8 +164,8 @@ def predict():
         plt.switch_backend('Agg')
 
         # Provide the input MP3 file path and output spectrogram image path
-        input_audio_path = "/Users/shriyanssairy/new-app/flask-server/temp.mp3"
-        output_image_path = '/Users/shriyanssairy/new-app/flask-server/spectro.jpg'
+        input_audio_path = "/Users/shriyanssairy/MusicDetection/new-app/flask-server/temp.mp3"
+        output_image_path = '/Users/shriyanssairy/MusicDetection/new-app/flask-server/spectro.jpg'
 
         # Convert the audio file to spectrogram image and save as JPEG
         audio_to_spectrogram(input_audio_path, output_image_path)
