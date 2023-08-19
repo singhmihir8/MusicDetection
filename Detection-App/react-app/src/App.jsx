@@ -58,7 +58,7 @@ const App = () => {
           .then((response) => response.json())
           .then((data) => {
             // console.log("response");
-            setPredictedClass("This is" + data.response);
+            setPredictedClass("This is " + data.response);
             console.log(data);
           })
           .catch((error) => {
