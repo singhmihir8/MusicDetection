@@ -106,13 +106,13 @@ def vid_to_mp3(link, destination):
 
 
 def test_single_image(image_path, transform):
-    #load model
+    # load model
     device = torch.device('mps')
     model_path = '/Users/shriyanssairy/Desktop/Saved Models/saved_resnet18_1691910656.348921(78%).pt'
     num_layers = 18
     model = AI_Detection_Model(num_classes=2, num_layers=num_layers)
     model.load_state_dict(torch.load(model_path, map_location=device))
-    model.eval();
+    model.eval()
 
     # Load and preprocess the image
     image = Image.open(image_path)
@@ -153,9 +153,11 @@ transform = transforms.Compose([
 app = Flask(__name__, static_folder="../react-app/dist", static_url_path="/")
 CORS(app)
 
+
 @app.route("/")
 def index():
     return app.send_static_file('index.html')
+
 
 @app.route("/test")
 def connection_test():
