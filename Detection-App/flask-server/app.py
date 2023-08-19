@@ -150,9 +150,12 @@ transform = transforms.Compose([
     #     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../react-app/dist", static_url_path="/")
 CORS(app)
 
+@app.route("/")
+def index():
+    return app.send_static_file('index.html')
 
 @app.route("/test")
 def connection_test():

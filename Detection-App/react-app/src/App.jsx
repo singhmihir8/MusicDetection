@@ -112,7 +112,9 @@ const App = () => {
           </div>
         </form>
       </div>
+
       <h2 className={styles.heading2}>{predictedClass}</h2>
+
       <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth}`}>
           <Testimonials />
