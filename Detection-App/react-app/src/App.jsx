@@ -58,7 +58,7 @@ const App = () => {
           .then((response) => response.json())
           .then((data) => {
             // console.log("response");
-            setPredictedClass(data.response);
+            setPredictedClass("This is " + data.response);
             console.log(data);
           })
           .catch((error) => {
@@ -113,7 +113,9 @@ const App = () => {
         </form>
       </div>
       
-      <h2 className={styles.heading2}>{predictedClass}</h2>
+      <center>
+        <h2 className={styles.heading2}>{predictedClass}</h2>
+      </center>
 
       <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth}`}>
