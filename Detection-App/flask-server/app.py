@@ -164,7 +164,7 @@ def connection_test():
     return {"test": "test"}
 
 
-@app.route("/post-test", methods=['POST'])
+@app.route("/predict", methods=['POST'])
 def predict():
     response = None
     if (request.is_json):
