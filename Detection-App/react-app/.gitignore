@@ -7,7 +7,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-dist-ssr
 *.local
 
 # Editor directories and files
