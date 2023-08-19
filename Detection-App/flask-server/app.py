@@ -172,8 +172,8 @@ def predict():
         plt.switch_backend('Agg')
 
         # Provide the input MP3 file path and output spectrogram image path
-        input_audio_path = "/Users/shriyanssairy/MusicDetection/new-app/flask-server/temp.mp3"
-        output_image_path = '/Users/shriyanssairy/MusicDetection/new-app/flask-server/spectro.jpg'
+        input_audio_path = "/Users/shriyanssairy/Desktop/MusicDetection/Detection-App/flask-server/temp.mp3"
+        output_image_path = '/Users/shriyanssairy/Desktop/MusicDetection/Detection-App/flask-server/spectro.jpg'
 
         # Convert the audio file to spectrogram image and save as JPEG
         audio_to_spectrogram(input_audio_path, output_image_path)
