@@ -48,7 +48,7 @@ const App = () => {
         const base64EncodedFile = reader.result.split(",")[1];
 
         // Send the base64 encoded file as part of the POST request
-        fetch("http://127.0.0.1:5000/predict", {
+        fetch("/predict", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
