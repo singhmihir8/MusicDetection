@@ -6,30 +6,30 @@ const App = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [predictedClass, setPredictedClass] = useState(null);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
   
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
+  //   if (selectedFile) {
+  //     const formData = new FormData();
+  //     formData.append("file", selectedFile);
   
-      fetch("/predict", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json()) // Parse the response as JSON
-        .then((data) => {
-          // Handle the response data
-          const predictedClass = data.predicted_class;
-          console.log("Predicted Class:", predictedClass);
-          // ... do something with the predicted class
-        })
-        .catch((error) => {
-          // Handle any errors that occur during the request
-          console.error("Error sending POST request:", error);
-        });
-    }
-  };
+  //     fetch("/predict", {
+  //       method: "POST",
+  //       body: formData,
+  //     })
+  //       .then((response) => response.json()) // Parse the response as JSON
+  //       .then((data) => {
+  //         // Handle the response data
+  //         const predictedClass = data.predicted_class;
+  //         console.log("Predicted Class:", predictedClass);
+  //         // ... do something with the predicted class
+  //       })
+  //       .catch((error) => {
+  //         // Handle any errors that occur during the request
+  //         console.error("Error sending POST request:", error);
+  //       });
+  //   }
+  // };
 
 
   const handleFileChange = (event) => {
@@ -40,7 +40,7 @@ const App = () => {
 
   const handleUpload = () => {
     // console.log("attempting fetch");
-    setPredictedClass(null);
+    setPredictedClass("Loading...");
     const reader = new FileReader();
     reader.onloadend = () => {
       if (reader.result && typeof reader.result === "string") {
@@ -112,7 +112,7 @@ const App = () => {
           </div>
         </form>
       </div>
-
+      
       <h2 className={styles.heading2}>{predictedClass}</h2>
 
       <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
