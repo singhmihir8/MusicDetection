@@ -108,7 +108,7 @@ def vid_to_mp3(link, destination):
 def test_single_image(image_path, transform):
     # load model
     device = torch.device('mps')
-    model_path = '/Users/shriyanssairy/Desktop/Saved Models/saved_resnet18_1691910656.348921(78%).pt'
+    model_path = getParentDirectory() + '/saved_resnet18_1691910656.348921(78%).pt'
     num_layers = 18
     model = AI_Detection_Model(num_classes=2, num_layers=num_layers)
     model.load_state_dict(torch.load(model_path, map_location=device))
@@ -150,6 +150,11 @@ transform = transforms.Compose([
     #     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
+
+def getParentDirectory():
+    return os.path.abspath(os.path.join(__file__, os.pardir))
+
+
 app = Flask(__name__, static_folder="../react-app/dist", static_url_path="/")
 CORS(app)
 
@@ -177,8 +182,8 @@ def predict():
         plt.switch_backend('Agg')
 
         # Provide the input MP3 file path and output spectrogram image path
-        input_audio_path = "/Users/shriyanssairy/Desktop/MusicDetection/Detection-App/flask-server/temp.mp3"
-        output_image_path = '/Users/shriyanssairy/Desktop/MusicDetection/Detection-App/flask-server/spectro.jpg'
+        input_audio_path = getParentDirectory() + "/temp.mp3"
+        output_image_path = getParentDirectory() + '/spectro.jpg'
 
         # Convert the audio file to spectrogram image and save as JPEG
         audio_to_spectrogram(input_audio_path, output_image_path)
