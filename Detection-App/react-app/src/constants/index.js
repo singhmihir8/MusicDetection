@@ -43,7 +43,6 @@ export const feedback = [
       "https://www.linkedin.com/in/ananth-sriram-524717252/",
     name: "Ananth Sriram",
     title: "Co-Founder",
-    img: people01,
   },
   {
     id: "feedback-2",
@@ -51,15 +50,13 @@ export const feedback = [
       "https://www.linkedin.com/in/ashmit-gaba-10679b1ba/",
     name: "Ashmit Gaba",
     title: "Co-Founder",
-    img: people02,
   },
   {
     id: "feedback-3",
     content:
-      "mihir linkedin",
+      "https://www.linkedin.com/in/ananth-sriram-524717252/",
     name: "Mihir Singh",
     title: "Co-Founder",
-    img: people03,
   },
   {
     id: "feedback-4",
@@ -67,15 +64,6 @@ export const feedback = [
       "https://www.linkedin.com/in/shriyans-sairy-0224781b8/",
     name: "Shriyans Sairy",
     title: "Co-Founder",
-    img: people03,
-  },
-  {
-    id: "feedback-5",
-    content:
-      "https://www.linkedin.com/in/vahinreddy-palle/",
-    name: "Vahinreddy Palle",
-    title: "Co-Founder",
-    img: people03,
   },
 ];
 
