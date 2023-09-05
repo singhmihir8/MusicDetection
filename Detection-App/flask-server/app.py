@@ -80,27 +80,6 @@ def audio_to_spectrogram(audio_file, output_file):
 
     crop_image(output_file)
 
-
-def vid_to_mp3(link, destination):
-    # url input from user
-    yt = YouTube(link)
-
-    # extract only audio
-    video = yt.streams.filter(only_audio=True).first()
-
-    # download the file
-    name = yt.author + ' - ' + yt.title
-    out_file = video.download(output_path=destination, filename=name)
-
-    # save the file
-    base, ext = os.path.splitext(out_file)
-    new_file = base + '.mp3'
-    os.rename(out_file, new_file)
-
-    # result of success
-
-    return new_file, name
-
 # Define the function for testing a single image
 
 
