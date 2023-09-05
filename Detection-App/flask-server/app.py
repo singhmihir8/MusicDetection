@@ -6,7 +6,6 @@ import librosa
 import matplotlib.pyplot as plt
 import librosa.display
 import numpy as np
-from pytube import YouTube
 import os
 from PIL import Image
 import torch
