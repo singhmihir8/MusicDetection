@@ -61,7 +61,7 @@ export const feedback = [
   {
     id: "feedback-4",
     content:
-      "https://www.linkedin.com/in/shriyans-sairy-0224781b8/",
+      "https://www.linkedin.com/in/shriyans-sairy/",
     name: "Shriyans Sairy",
     title: "Co-Founder",
   },

@@ -60,7 +60,7 @@ const App = () => {
           .then((response) => response.json())
           .then((data) => {
             // console.log("response");
-            setPredictedClass(predictedClass.substring(0, predictedClass.length - 3) + data.response);
+            setPredictedClass(predictedClass + " is " + data.response);
             console.log(data);
           })
           .catch((error) => {

@@ -1,4 +1,5 @@
 # importing packages
+import awsgi
 from flask import Flask, request
 from flask_cors import CORS
 import base64
@@ -11,10 +12,8 @@ from PIL import Image
 import torch
 import torch.nn as nn
 from torchvision import transforms, models
-from torchvision.datasets import ImageFolder
-from torch.utils.data import DataLoader
-import time
-import glob
+
+
 
 
 class AI_Detection_Model(nn.Module):
@@ -171,6 +170,9 @@ def predict():
 
     return {"response": predicted_class}
 
+
+def lambda_handler(event, context):
+    return awsgi.response(app, event, context, base64_content_types={"image/png"})
 
 if __name__ == "__main__":
     app.run(port=8000, debug=True)
