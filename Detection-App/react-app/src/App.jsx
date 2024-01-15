@@ -36,11 +36,13 @@ const App = () => {
     const file = event.target.files?.[0];
     setSelectedFile(file);
     console.log(file);
-    setPredictedClass(file.name + " is ...")
+    setPredictedClass(file.name)
   };
 
   const handleUpload = () => {
     // console.log("attempting fetch");
+    setPredictedClass(predictedClass + " is ...")
+
     const reader = new FileReader();
     reader.onloadend = () => {
       if (reader.result && typeof reader.result === "string") {
